@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="InkSpace editorial publishing and content management workspace.">
+  <title>InkSpace — Content Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#" aria-label="InkSpace home"><span class="brand-mark">i.</span><span>inkspace<span class="brand-dot">.</span></span></a>
+    <div class="workspace-label">WORKSPACE</div>
+    <nav class="nav-list">
+      <button class="nav-item active" data-view="overview"><span class="nav-icon">▦</span> Overview</button>
+      <button class="nav-item" data-view="posts"><span class="nav-icon">▤</span> All posts <span class="nav-count" id="postNavCount">8</span></button>
+      <button class="nav-item" data-view="editor"><span class="nav-icon">＋</span> New article</button>
+      <button class="nav-item" data-view="comments"><span class="nav-icon">▧</span> Comments <span class="nav-count" id="commentNavCount">3</span></button>
+      <button class="nav-item" data-view="categories"><span class="nav-icon">◈</span> Categories</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="plan-card"><div class="plan-icon">✦</div><strong>Creator workspace</strong><p>Your editorial space is looking good. Keep publishing.</p><div class="plan-progress"><span></span></div><small>8 of 12 monthly articles</small></div>
+      <button class="profile-button" id="profileButton"><span class="avatar">SJ</span><span class="profile-meta"><strong>Sawaira J.</strong><small>Workspace admin</small></span><span class="more">···</span></button>
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar">
+      <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+      <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbTitle">Overview</strong></div>
+      <div class="top-actions"><div class="search-wrap"><span>⌕</span><input id="globalSearch" placeholder="Search anything..." aria-label="Search posts"><kbd>⌘ K</kbd></div><button class="icon-button" id="themeToggle" title="Toggle theme">☼</button><button class="icon-button notification" title="Notifications">♧<i></i></button><span class="top-avatar">SJ</span></div>
+    </header>
+
+    <section class="view active-view" id="overviewView">
+      <div class="page-heading"><div><div class="eyebrow">SUNDAY, NOVEMBER 08, 2026</div><h1>Good afternoon, Sawaira <span class="wave">✦</span></h1><p>Here's what's happening with your publication today.</p></div><button class="primary-btn" data-go="editor">＋ Create article</button></div>
+      <div class="stat-grid">
+        <article class="stat-card"><div class="stat-top"><span>Total views</span><span class="stat-icon violet">◉</span></div><div class="stat-value" id="totalViews">24,891</div><div class="stat-foot"><span class="positive">↗ 12.8%</span> <span>vs. last month</span></div><div class="sparkline purple"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Published articles</span><span class="stat-icon blue">▤</span></div><div class="stat-value" id="publishedCount">8</div><div class="stat-foot"><span class="positive">↗ 2 new</span> <span>this month</span></div><div class="sparkline blue-line"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Engagement rate</span><span class="stat-icon orange">♡</span></div><div class="stat-value">6.42<span class="unit">%</span></div><div class="stat-foot"><span class="positive">↗ 1.4%</span> <span>vs. last month</span></div><div class="sparkline orange-line"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Pending comments</span><span class="stat-icon green">▧</span></div><div class="stat-value" id="pendingCount">3</div><div class="stat-foot"><span class="neutral">Needs attention</span> <span>from readers</span></div><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+      </div>
+      <div class="content-grid">
+        <article class="panel performance-panel"><div class="panel-heading"><div><h2>Content performance</h2><p>Track how your stories are performing</p></div><select id="chartRange"><option>Last 7 days</option><option>Last 30 days</option><option>Last 90 days</option></select></div><div class="chart-legend"><span><i class="legend-dot"></i> Article views</span><strong>18,420 <small class="positive">↗ 8.2%</small></strong></div><div class="chart"><div class="y-labels"><span>5k</span><span>4k</span><span>3k</span><span>2k</span><span>1k</span><span>0</span></div><div class="chart-area"><div class="grid-lines"><i></i><i></i><i></i><i></i><i></i><i></i></div><svg viewBox="0 0 700 190" preserveAspectRatio="none" aria-label="Article views trend"><defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7665e8" stop-opacity=".22"/><stop offset="1" stop-color="#7665e8" stop-opacity="0"/></linearGradient></defs><path d="M0 150 C35 145 45 110 85 125 S140 85 175 103 S225 120 260 78 S315 95 350 67 S405 82 440 53 S500 80 530 48 S585 65 615 28 S665 45 700 12 L700 190 L0 190Z" fill="url(#fill)"/><path d="M0 150 C35 145 45 110 85 125 S140 85 175 103 S225 120 260 78 S315 95 350 67 S405 82 440 53 S500 80 530 48 S585 65 615 28 S665 45 700 12" fill="none" stroke="#7665e8" stroke-width="3" stroke-linecap="round"/></svg><div class="x-labels"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div></div></div></article>
+        <article class="panel traffic-panel"><div class="panel-heading"><div><h2>Traffic sources</h2><p>Where your readers come from</p></div><button class="more-btn">···</button></div><div class="donut-wrap"><div class="donut"><div><strong>24.8k</strong><small>Total visitors</small></div></div></div><div class="traffic-list"><div><span><i class="source-dot s1"></i>Direct</span><strong>42%</strong></div><div><span><i class="source-dot s2"></i>Social media</span><strong>28%</strong></div><div><span><i class="source-dot s3"></i>Search engines</span><strong>20%</strong></div><div><span><i class="source-dot s4"></i>Referral</span><strong>10%</strong></div></div></article>
+      </div>
+      <article class="panel recent-panel"><div class="panel-heading"><div><h2>Recent articles</h2><p>Your latest content across the publication</p></div><button class="text-btn" data-go="posts">View all articles →</button></div><div class="table-wrap"><table><thead><tr><th>ARTICLE</th><th>STATUS</th><th>DATE</th><th>VIEWS</th><th></th></tr></thead><tbody id="recentTable"></tbody></table></div></article>
+    </section>
+
+    <section class="view" id="postsView"><div class="page-heading"><div><div class="eyebrow">PUBLISHING</div><h1>All articles</h1><p>Manage, organize and publish your stories.</p></div><button class="primary-btn" data-go="editor">＋ New article</button></div><div class="panel posts-panel"><div class="toolbar"><div class="tabs"><button class="tab active" data-filter="All">All articles <span id="allCount">8</span></button><button class="tab" data-filter="Published">Published</button><button class="tab" data-filter="Draft">Drafts</button><button class="tab" data-filter="Archived">Archived</button></div><div class="toolbar-actions"><input id="postSearch" class="filter-search" placeholder="Search articles..."><select id="categoryFilter"><option value="All">All categories</option><option>Technology</option><option>Design</option><option>Productivity</option><option>Education</option></select></div></div><div class="table-wrap"><table><thead><tr><th>ARTICLE</th><th>STATUS</th><th>CATEGORY</th><th>LAST UPDATED</th><th>VIEWS</th><th>ACTIONS</th></tr></thead><tbody id="postsTable"></tbody></table></div><div class="table-footer"><span id="tableSummary">Showing 8 articles</span><span>Local demo workspace</span></div></div></section>
+
+    <section class="view" id="editorView"><div class="page-heading"><div><div class="eyebrow">EDITORIAL WORKSPACE</div><h1 id="editorHeading">Create an article</h1><p>Shape your next story and prepare it for publication.</p></div><button class="secondary-btn" data-go="posts">← Back to articles</button></div><div class="editor-layout"><div class="panel editor-main"><label class="field-label" for="articleTitle">Article title</label><input id="articleTitle" class="title-input" placeholder="Give your story a compelling title..." maxlength="100"><div class="editor-tools"><button data-format="bold"><b>B</b></button><button data-format="italic"><i>I</i></button><button data-format="h2">H₂</button><button data-format="ul">☷</button><button data-format="quote">“ ”</button><span></span><small>EDITOR</small></div><label class="field-label" for="articleBody">Your story</label><textarea id="articleBody" class="body-input" placeholder="Start writing your story here...&#10;&#10;Share an idea, tell a story, or teach something valuable."></textarea><div class="editor-bottom"><span id="wordCount">0 words</span><span>Autosave is local to this browser</span></div></div><div class="editor-side"><div class="panel side-panel"><h3>Publishing</h3><p>Choose how your article appears.</p><label class="field-label">Status</label><select id="articleStatus"><option>Draft</option><option>Published</option></select><label class="field-label">Publish date</label><input type="date" id="articleDate"><button class="primary-btn full-btn" id="saveArticle">Save article</button><button class="secondary-btn full-btn" id="publishArticle">Publish article</button></div><div class="panel side-panel"><h3>Organization</h3><label class="field-label">Category</label><select id="articleCategory"><option>Technology</option><option>Design</option><option>Productivity</option><option>Education</option></select><label class="field-label">Tags</label><input id="articleTags" placeholder="e.g. AI, creativity, tips"><label class="field-label">Featured image URL</label><input id="articleImage" placeholder="https://example.com/image.jpg"><small class="helper">Image URLs are optional. This demo stores article data in your browser.</small></div></div></div></section>
+
+    <section class="view" id="commentsView"><div class="page-heading"><div><div class="eyebrow">COMMUNITY</div><h1>Reader comments</h1><p>Keep the conversation thoughtful and welcoming.</p></div><div class="comment-summary"><strong id="commentTotal">3</strong><span>awaiting review</span></div></div><div class="panel comments-panel"><div class="toolbar"><div class="tabs"><button class="tab active" data-comment-filter="Pending">Pending</button><button class="tab" data-comment-filter="Approved">Approved</button><button class="tab" data-comment-filter="All">All comments</button></div></div><div id="commentsList"></div></div></section>
+
+    <section class="view" id="categoriesView"><div class="page-heading"><div><div class="eyebrow">CONTENT ORGANIZATION</div><h1>Categories</h1><p>Organize your publication into clear topics.</p></div><button class="primary-btn" id="addCategory">＋ Add category</button></div><div class="category-grid" id="categoryGrid"></div></section>
+    <footer class="footer"><span>© 2026 InkSpace Studio</span><span>Thoughtful stories. Beautifully organized.</span></footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><button class="modal-close" id="modalClose">×</button><div class="modal-symbol">✦</div><h2 id="modalTitle">Confirm action</h2><p id="modalText">Are you sure?</p><div class="modal-actions"><button class="secondary-btn" id="modalCancel">Cancel</button><button class="primary-btn" id="modalConfirm">Confirm</button></div></div></div>
+<script src="app.js"></script>
+</body></html>
