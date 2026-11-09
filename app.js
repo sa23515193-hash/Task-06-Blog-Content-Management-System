@@ -1,53 +1,1008 @@
-const KEY='inkspace_posts_v1', COMMENT_KEY='inkspace_comments_v1';
-const starterPosts=[
-{id:1,title:'The quiet power of building things slowly',category:'Productivity',status:'Published',date:'2026-11-07',views:2840,body:'Great work is rarely built in a hurry. Small, consistent steps create meaningful progress over time.',tags:['habits','growth'],image:''},
-{id:2,title:'How artificial intelligence is reshaping creativity',category:'Technology',status:'Published',date:'2026-11-05',views:1950,body:'AI is changing creative workflows, opening new possibilities for people who know how to ask better questions.',tags:['AI','future'],image:''},
-{id:3,title:'Designing digital experiences people remember',category:'Design',status:'Published',date:'2026-11-03',views:1630,body:'A memorable experience is clear, considerate and consistent. Design begins with understanding people.',tags:['UX','design'],image:''},
-{id:4,title:'A practical guide to focused learning',category:'Education',status:'Draft',date:'2026-11-02',views:0,body:'Learning becomes more effective when goals are clear and practice is deliberate.',tags:['learning'],image:''},
-{id:5,title:'Five small systems that save your time',category:'Productivity',status:'Published',date:'2026-10-29',views:1420,body:'Simple systems reduce repeated decisions and make room for meaningful work.',tags:['systems'],image:''},
-{id:6,title:'The beginner-friendly guide to web accessibility',category:'Technology',status:'Published',date:'2026-10-25',views:1280,body:'Accessible interfaces are more usable for everyone. Start with semantic structure and keyboard support.',tags:['web','accessibility'],image:''},
-{id:7,title:'Color, contrast and visual storytelling',category:'Design',status:'Draft',date:'2026-10-21',views:0,body:'Color can guide attention and communicate hierarchy when used with intention.',tags:['visual'],image:''},
-{id:8,title:'Building a portfolio that tells your story',category:'Education',status:'Archived',date:'2026-10-15',views:940,body:'A strong portfolio explains not only what you built, but why it matters.',tags:['career'],image:''}
+// ==========================================
+// 1. LOCAL STORAGE KEYS
+// ==========================================
+
+const KEY = 'inkspace_posts_v1';
+const COMMENT_KEY = 'inkspace_comments_v1';
+
+
+// ==========================================
+// 2. STARTER POSTS DATA
+// ==========================================
+
+const starterPosts = [
+    {
+        id: 1,
+        title: 'The quiet power of building things slowly',
+        category: 'Productivity',
+        status: 'Published',
+        date: '2026-11-07',
+        views: 2840,
+        body: 'Great work is rarely built in a hurry. Small, consistent steps create meaningful progress over time.',
+        tags: ['habits', 'growth'],
+        image: ''
+    },
+    {
+        id: 2,
+        title: 'How artificial intelligence is reshaping creativity',
+        category: 'Technology',
+        status: 'Published',
+        date: '2026-11-05',
+        views: 1950,
+        body: 'AI is changing creative workflows, opening new possibilities for people who know how to ask better questions.',
+        tags: ['AI', 'future'],
+        image: ''
+    },
+    {
+        id: 3,
+        title: 'Designing digital experiences people remember',
+        category: 'Design',
+        status: 'Published',
+        date: '2026-11-03',
+        views: 1630,
+        body: 'A memorable experience is clear, considerate and consistent. Design begins with understanding people.',
+        tags: ['UX', 'design'],
+        image: ''
+    },
+    {
+        id: 4,
+        title: 'A practical guide to focused learning',
+        category: 'Education',
+        status: 'Draft',
+        date: '2026-11-02',
+        views: 0,
+        body: 'Learning becomes more effective when goals are clear and practice is deliberate.',
+        tags: ['learning'],
+        image: ''
+    },
+    {
+        id: 5,
+        title: 'Five small systems that save your time',
+        category: 'Productivity',
+        status: 'Published',
+        date: '2026-10-29',
+        views: 1420,
+        body: 'Simple systems reduce repeated decisions and make room for meaningful work.',
+        tags: ['systems'],
+        image: ''
+    },
+    {
+        id: 6,
+        title: 'The beginner-friendly guide to web accessibility',
+        category: 'Technology',
+        status: 'Published',
+        date: '2026-10-25',
+        views: 1280,
+        body: 'Accessible interfaces are more usable for everyone. Start with semantic structure and keyboard support.',
+        tags: ['web', 'accessibility'],
+        image: ''
+    },
+    {
+        id: 7,
+        title: 'Color, contrast and visual storytelling',
+        category: 'Design',
+        status: 'Draft',
+        date: '2026-10-21',
+        views: 0,
+        body: 'Color can guide attention and communicate hierarchy when used with intention.',
+        tags: ['visual'],
+        image: ''
+    },
+    {
+        id: 8,
+        title: 'Building a portfolio that tells your story',
+        category: 'Education',
+        status: 'Archived',
+        date: '2026-10-15',
+        views: 940,
+        body: 'A strong portfolio explains not only what you built, but why it matters.',
+        tags: ['career'],
+        image: ''
+    }
 ];
-const starterComments=[
-{id:1,name:'Ayesha Malik',initials:'AM',time:'12 minutes ago',text:'This is such a thoughtful perspective. The point about consistency really resonated with me.',article:'The quiet power of building things slowly',status:'Pending'},
-{id:2,name:'Hamza Rauf',initials:'HR',time:'1 hour ago',text:'Would love to read a follow-up with practical examples for students.',article:'How artificial intelligence is reshaping creativity',status:'Pending'},
-{id:3,name:'Mina Shah',initials:'MS',time:'Yesterday',text:'Clear, useful and beautifully explained. Thank you for sharing!',article:'Designing digital experiences people remember',status:'Pending'}
+
+
+// ==========================================
+// 3. STARTER COMMENTS DATA
+// ==========================================
+
+const starterComments = [
+    {
+        id: 1,
+        name: 'Ayesha Malik',
+        initials: 'AM',
+        time: '12 minutes ago',
+        text: 'This is such a thoughtful perspective. The point about consistency really resonated with me.',
+        article: 'The quiet power of building things slowly',
+        status: 'Pending'
+    },
+    {
+        id: 2,
+        name: 'Hamza Rauf',
+        initials: 'HR',
+        time: '1 hour ago',
+        text: 'Would love to read a follow-up with practical examples for students.',
+        article: 'How artificial intelligence is reshaping creativity',
+        status: 'Pending'
+    },
+    {
+        id: 3,
+        name: 'Mina Shah',
+        initials: 'MS',
+        time: 'Yesterday',
+        text: 'Clear, useful and beautifully explained. Thank you for sharing!',
+        article: 'Designing digital experiences people remember',
+        status: 'Pending'
+    }
 ];
-let posts=JSON.parse(localStorage.getItem(KEY)||'null')||starterPosts;
-let comments=JSON.parse(localStorage.getItem(COMMENT_KEY)||'null')||starterComments;
-let currentFilter='All',commentFilter='Pending',editingId=null,modalAction=null;
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-function persist(){localStorage.setItem(KEY,JSON.stringify(posts));localStorage.setItem(COMMENT_KEY,JSON.stringify(comments));}
-function toast(message){const el=$('#toast');el.textContent=message;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400)}
-function escapeHTML(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function dateFmt(d){if(!d)return '—';return new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
-function statusClass(s){return 'status-'+s.toLowerCase()}
-function postIcon(c){return ({Technology:'⌘',Design:'✧',Productivity:'◷',Education:'▱'})[c]||'▤'}
-function nav(view){$$('.view').forEach(v=>v.classList.remove('active-view'));$('#'+view+'View').classList.add('active-view');$$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.view===view));$('#breadcrumbTitle').textContent=({overview:'Overview',posts:'All posts',editor:editingId?'Edit article':'New article',comments:'Comments',categories:'Categories'})[view];$('#sidebar').classList.remove('open');if(view==='posts')renderPosts();if(view==='comments')renderComments();if(view==='categories')renderCategories();if(view==='overview')renderOverview();window.scrollTo(0,0)}
-function postRow(p,withCategory=false){return `<tr><td><div class="article-cell"><span class="article-thumb">${postIcon(p.category)}</span><span class="article-info"><strong>${escapeHTML(p.title)}</strong><small>${(p.tags||[]).slice(0,2).map(escapeHTML).join(' · ')||'No tags'}</small></span></div></td><td><span class="status ${statusClass(p.status)}">${p.status}</span></td>${withCategory?`<td>${escapeHTML(p.category)}</td>`:''}<td>${dateFmt(p.date)}</td><td>${p.views.toLocaleString()}</td>${withCategory?`<td><button class="row-action" data-edit="${p.id}" title="Edit">✎</button> <button class="row-action" data-archive="${p.id}" title="Archive">···</button></td>`:`<td><button class="row-action" data-edit="${p.id}">✎</button></td>`}</tr>`}
-function renderOverview(){const published=posts.filter(p=>p.status==='Published');$('#publishedCount').textContent=published.length;$('#postNavCount').textContent=posts.length;$('#pendingCount').textContent=comments.filter(c=>c.status==='Pending').length;$('#commentNavCount').textContent=comments.filter(c=>c.status==='Pending').length;$('#recentTable').innerHTML=[...posts].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4).map(p=>postRow(p)).join('');$('#recentTable').querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editPost(+b.dataset.edit));}
-function renderPosts(){let q=$('#postSearch').value.toLowerCase(),cat=$('#categoryFilter').value;let filtered=posts.filter(p=>(currentFilter==='All'||p.status===currentFilter)&&p.title.toLowerCase().includes(q)&&(cat==='All'||p.category===cat));$('#postsTable').innerHTML=filtered.map(p=>postRow(p,true)).join('')||'<tr><td colspan="6" style="text-align:center;padding:35px">No articles match your filters.</td></tr>';$('#allCount').textContent=posts.length;$('#tableSummary').textContent=`Showing ${filtered.length} of ${posts.length} articles`;$$('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===currentFilter));$$('[data-edit]').forEach(b=>b.onclick=()=>editPost(+b.dataset.edit));$$('[data-archive]').forEach(b=>b.onclick=()=>{const p=posts.find(x=>x.id===+b.dataset.archive);p.status=p.status==='Archived'?'Draft':'Archived';persist();renderPosts();toast('Article status updated')})}
-function openEditor(){editingId=null;$('#editorHeading').textContent='Create an article';$('#articleTitle').value='';$('#articleBody').value='';$('#articleStatus').value='Draft';$('#articleDate').value=new Date().toISOString().slice(0,10);$('#articleCategory').value='Technology';$('#articleTags').value='';$('#articleImage').value='';updateWords();nav('editor')}
-function editPost(id){const p=posts.find(x=>x.id===id);if(!p)return;editingId=id;$('#editorHeading').textContent='Edit article';$('#articleTitle').value=p.title;$('#articleBody').value=p.body;$('#articleStatus').value=p.status;$('#articleDate').value=p.date;$('#articleCategory').value=p.category;$('#articleTags').value=(p.tags||[]).join(', ');$('#articleImage').value=p.image||'';updateWords();nav('editor')}
-function savePost(forcePublish=false){const title=$('#articleTitle').value.trim(),body=$('#articleBody').value.trim();if(!title){toast('Please add an article title');$('#articleTitle').focus();return}if(!body){toast('Please write some article content');$('#articleBody').focus();return}const data={title,body,status:forcePublish?'Published':$('#articleStatus').value,date:$('#articleDate').value||new Date().toISOString().slice(0,10),category:$('#articleCategory').value,tags:$('#articleTags').value.split(',').map(x=>x.trim()).filter(Boolean),image:$('#articleImage').value.trim()};if(editingId){Object.assign(posts.find(p=>p.id===editingId),data)}else posts.unshift({id:Date.now(),views:0,...data});persist();renderOverview();toast(forcePublish?'Article published successfully':'Article saved successfully');nav('posts')}
-function updateWords(){const count=$('#articleBody').value.trim().split(/\s+/).filter(Boolean).length;$('#wordCount').textContent=count+' words'}
-function renderComments(){const list=comments.filter(c=>commentFilter==='All'||c.status===commentFilter);$('#commentsList').innerHTML=list.map(c=>`<div class="comment-item"><div class="comment-avatar">${escapeHTML(c.initials)}</div><div class="comment-content"><div class="comment-head"><strong>${escapeHTML(c.name)}</strong><small>${escapeHTML(c.time)}</small><span class="status ${c.status==='Approved'?'status-published':'status-draft'}">${c.status}</span></div><p>${escapeHTML(c.text)}</p><div class="comment-on">On: ${escapeHTML(c.article)}</div><div class="comment-actions">${c.status!=='Approved'?`<button class="small-action approve" data-approve="${c.id}">✓ Approve</button>`:''}<button class="small-action" data-delete-comment="${c.id}">Delete</button></div></div></div>`).join('')||'<p style="padding:25px;color:var(--muted)">No comments in this view.</p>';$('#commentTotal').textContent=comments.filter(c=>c.status==='Pending').length;$$('[data-approve]').forEach(b=>b.onclick=()=>{comments.find(c=>c.id===+b.dataset.approve).status='Approved';persist();renderComments();renderOverview();toast('Comment approved')});$$('[data-delete-comment]').forEach(b=>b.onclick=()=>confirmAction('Delete comment?','This comment will be removed from your local demo workspace.',()=>{comments=comments.filter(c=>c.id!==+b.dataset.deleteComment);persist();renderComments();renderOverview();toast('Comment deleted')}));$$('[data-comment-filter]').forEach(b=>b.classList.toggle('active',b.dataset.commentFilter===commentFilter))}
-function renderCategories(){const cats=['Technology','Design','Productivity','Education'];const descriptions=['Ideas, innovation and the digital world.','Visual thinking and experiences that matter.','Better systems for focused, meaningful work.','Learning resources, guides and student stories.'];$('#categoryGrid').innerHTML=cats.map((c,i)=>`<article class="category-card"><div class="category-symbol">${['⌘','✧','◷','▱'][i]}</div><h3>${c}</h3><p>${descriptions[i]}</p><small>${posts.filter(p=>p.category===c).length} articles · View articles →</small></article>`).join('')}
-function confirmAction(title,txt,fn){modalAction=fn;$('#modalTitle').textContent=title;$('#modalText').textContent=txt;$('#modalBackdrop').classList.add('show')}
-$$('[data-view]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.view==='editor')openEditor();else nav(b.dataset.view)}));
-$$('[data-go]').forEach(b=>b.addEventListener('click',()=>b.dataset.go==='editor'?openEditor():nav(b.dataset.go)));
-$$('[data-filter]').forEach(b=>b.addEventListener('click',()=>{currentFilter=b.dataset.filter;renderPosts()}));
-$$('[data-comment-filter]').forEach(b=>b.addEventListener('click',()=>{commentFilter=b.dataset.commentFilter;renderComments()}));
-$('#postSearch').addEventListener('input',renderPosts);$('#categoryFilter').addEventListener('change',renderPosts);$('#globalSearch').addEventListener('input',e=>{if(e.target.value.trim()){nav('posts');$('#postSearch').value=e.target.value;renderPosts()}});
-$('#saveArticle').onclick=()=>savePost(false);$('#publishArticle').onclick=()=>savePost(true);$('#articleBody').addEventListener('input',updateWords);
-$$('[data-format]').forEach(b=>b.onclick=()=>{const ta=$('#articleBody'),start=ta.selectionStart,end=ta.selectionEnd,selected=ta.value.slice(start,end)||'your text',f=b.dataset.format,wrap=f==='bold'?['**','**']:f==='italic'?['_','_']:f==='h2'?['## ','']:f==='quote'?['> ','']:['• ',''];const replacement=wrap[0]+selected+wrap[1];ta.setRangeText(replacement,start,end,'select');ta.focus();updateWords()});
-$('#themeToggle').onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('inkspace_theme',document.body.classList.contains('dark')?'dark':'light')};
-if(localStorage.getItem('inkspace_theme')==='dark')document.body.classList.add('dark');
-$('#mobileMenu').onclick=()=>$('#sidebar').classList.toggle('open');
-$('#addCategory').onclick=()=>toast('Demo categories are predefined for this workspace');
-$('#profileButton').onclick=()=>toast('Signed in as workspace admin (demo)');
-$('#modalClose').onclick=$('#modalCancel').onclick=()=>$('#modalBackdrop').classList.remove('show');
-$('#modalConfirm').onclick=()=>{if(modalAction)modalAction();$('#modalBackdrop').classList.remove('show')};
-$('#chartRange').onchange=e=>toast('Chart range set to '+e.target.value+' (sample analytics)');
-renderOverview();renderPosts();renderComments();renderCategories();
+
+
+// ==========================================
+// 4. GLOBAL VARIABLES
+// ==========================================
+
+let posts = JSON.parse(localStorage.getItem(KEY) || 'null') || starterPosts;
+
+let comments = JSON.parse(localStorage.getItem(COMMENT_KEY) || 'null') || starterComments;
+
+let currentFilter = 'All';
+let commentFilter = 'Pending';
+let editingId = null;
+let modalAction = null;
+
+
+// ==========================================
+// 5. DOM SELECTORS
+// ==========================================
+
+const $ = s => document.querySelector(s);
+
+const $$ = s => [...document.querySelectorAll(s)];
+
+
+// ==========================================
+// 6. HELPER FUNCTIONS
+// ==========================================
+
+function persist() {
+    localStorage.setItem(KEY, JSON.stringify(posts));
+
+    localStorage.setItem(COMMENT_KEY, JSON.stringify(comments));
+}
+
+
+function toast(message) {
+    const el = $('#toast');
+
+    el.textContent = message;
+
+    el.classList.add('show');
+
+    setTimeout(() => {
+        el.classList.remove('show');
+    }, 2400);
+}
+
+
+function escapeHTML(s = '') {
+    return String(s).replace(/[&<>"']/g, c => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    }[c]));
+}
+
+
+function dateFmt(d) {
+    if (!d) return '—';
+
+    return new Date(d + 'T00:00:00').toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+    });
+}
+
+
+function statusClass(s) {
+    return 'status-' + s.toLowerCase();
+}
+
+
+function postIcon(c) {
+    return ({
+        Technology: '⌘',
+        Design: '✧',
+        Productivity: '◷',
+        Education: '▱'
+    })[c] || '▤';
+}
+
+
+// ==========================================
+// 7. NAVIGATION FUNCTION
+// ==========================================
+
+function nav(view) {
+
+    $$('.view').forEach(v => {
+        v.classList.remove('active-view');
+    });
+
+    $('#' + view + 'View').classList.add('active-view');
+
+    $$('.nav-item').forEach(n => {
+        n.classList.toggle('active', n.dataset.view === view);
+    });
+
+    $('#breadcrumbTitle').textContent = ({
+        overview: 'Overview',
+        posts: 'All posts',
+        editor: editingId ? 'Edit article' : 'New article',
+        comments: 'Comments',
+        categories: 'Categories'
+    })[view];
+
+    $('#sidebar').classList.remove('open');
+
+    if (view === 'posts') renderPosts();
+
+    if (view === 'comments') renderComments();
+
+    if (view === 'categories') renderCategories();
+
+    if (view === 'overview') renderOverview();
+
+    window.scrollTo(0, 0);
+}
+
+
+// ==========================================
+// 8. POST ROW FUNCTION
+// ==========================================
+
+function postRow(p, withCategory = false) {
+
+    return `
+        <tr>
+
+            <td>
+                <div class="article-cell">
+
+                    <span class="article-thumb">
+                        ${postIcon(p.category)}
+                    </span>
+
+                    <span class="article-info">
+
+                        <strong>
+                            ${escapeHTML(p.title)}
+                        </strong>
+
+                        <small>
+                            ${(p.tags || []).slice(0, 2).map(escapeHTML).join(' · ') || 'No tags'}
+                        </small>
+
+                    </span>
+
+                </div>
+            </td>
+
+            <td>
+                <span class="status ${statusClass(p.status)}">
+                    ${p.status}
+                </span>
+            </td>
+
+            ${withCategory ? `<td>${escapeHTML(p.category)}</td>` : ''}
+
+            <td>${dateFmt(p.date)}</td>
+
+            <td>${p.views.toLocaleString()}</td>
+
+            ${withCategory
+                ? `
+                    <td>
+                        <button class="row-action" data-edit="${p.id}" title="Edit">
+                            ✎
+                        </button>
+
+                        <button class="row-action" data-archive="${p.id}" title="Archive">
+                            ···
+                        </button>
+                    </td>
+                `
+                : `
+                    <td>
+                        <button class="row-action" data-edit="${p.id}">
+                            ✎
+                        </button>
+                    </td>
+                `
+            }
+
+        </tr>
+    `;
+}
+
+
+// ==========================================
+// 9. RENDER OVERVIEW
+// ==========================================
+
+function renderOverview() {
+
+    const published = posts.filter(p => p.status === 'Published');
+
+    $('#publishedCount').textContent = published.length;
+
+    $('#postNavCount').textContent = posts.length;
+
+    $('#pendingCount').textContent = comments.filter(
+        c => c.status === 'Pending'
+    ).length;
+
+    $('#commentNavCount').textContent = comments.filter(
+        c => c.status === 'Pending'
+    ).length;
+
+    $('#recentTable').innerHTML = [...posts]
+        .sort((a, b) => b.date.localeCompare(a.date))
+        .slice(0, 4)
+        .map(p => postRow(p))
+        .join('');
+
+    $('#recentTable').querySelectorAll('[data-edit]').forEach(b => {
+        b.onclick = () => editPost(+b.dataset.edit);
+    });
+}
+
+
+// ==========================================
+// 10. RENDER POSTS
+// ==========================================
+
+function renderPosts() {
+
+    let q = $('#postSearch').value.toLowerCase();
+
+    let cat = $('#categoryFilter').value;
+
+    let filtered = posts.filter(p =>
+        (currentFilter === 'All' || p.status === currentFilter) &&
+        p.title.toLowerCase().includes(q) &&
+        (cat === 'All' || p.category === cat)
+    );
+
+    $('#postsTable').innerHTML = filtered
+        .map(p => postRow(p, true))
+        .join('') || `
+            <tr>
+                <td colspan="6" style="text-align:center;padding:35px">
+                    No articles match your filters.
+                </td>
+            </tr>
+        `;
+
+    $('#allCount').textContent = posts.length;
+
+    $('#tableSummary').textContent =
+        `Showing ${filtered.length} of ${posts.length} articles`;
+
+    $$('[data-filter]').forEach(b => {
+        b.classList.toggle('active', b.dataset.filter === currentFilter);
+    });
+
+    $$('[data-edit]').forEach(b => {
+        b.onclick = () => editPost(+b.dataset.edit);
+    });
+
+    $$('[data-archive]').forEach(b => {
+
+        b.onclick = () => {
+
+            const p = posts.find(x => x.id === +b.dataset.archive);
+
+            p.status = p.status === 'Archived' ? 'Draft' : 'Archived';
+
+            persist();
+
+            renderPosts();
+
+            toast('Article status updated');
+        };
+    });
+}
+
+
+// ==========================================
+// 11. CREATE NEW ARTICLE
+// ==========================================
+
+function openEditor() {
+
+    editingId = null;
+
+    $('#editorHeading').textContent = 'Create an article';
+
+    $('#articleTitle').value = '';
+
+    $('#articleBody').value = '';
+
+    $('#articleStatus').value = 'Draft';
+
+    $('#articleDate').value = new Date().toISOString().slice(0, 10);
+
+    $('#articleCategory').value = 'Technology';
+
+    $('#articleTags').value = '';
+
+    $('#articleImage').value = '';
+
+    updateWords();
+
+    nav('editor');
+}
+
+
+// ==========================================
+// 12. EDIT EXISTING ARTICLE
+// ==========================================
+
+function editPost(id) {
+
+    const p = posts.find(x => x.id === id);
+
+    if (!p) return;
+
+    editingId = id;
+
+    $('#editorHeading').textContent = 'Edit article';
+
+    $('#articleTitle').value = p.title;
+
+    $('#articleBody').value = p.body;
+
+    $('#articleStatus').value = p.status;
+
+    $('#articleDate').value = p.date;
+
+    $('#articleCategory').value = p.category;
+
+    $('#articleTags').value = (p.tags || []).join(', ');
+
+    $('#articleImage').value = p.image || '';
+
+    updateWords();
+
+    nav('editor');
+}
+
+
+// ==========================================
+// 13. SAVE / PUBLISH ARTICLE
+// ==========================================
+
+function savePost(forcePublish = false) {
+
+    const title = $('#articleTitle').value.trim();
+
+    const body = $('#articleBody').value.trim();
+
+    if (!title) {
+
+        toast('Please add an article title');
+
+        $('#articleTitle').focus();
+
+        return;
+    }
+
+    if (!body) {
+
+        toast('Please write some article content');
+
+        $('#articleBody').focus();
+
+        return;
+    }
+
+    const data = {
+        title,
+        body,
+
+        status: forcePublish
+            ? 'Published'
+            : $('#articleStatus').value,
+
+        date: $('#articleDate').value ||
+            new Date().toISOString().slice(0, 10),
+
+        category: $('#articleCategory').value,
+
+        tags: $('#articleTags').value
+            .split(',')
+            .map(x => x.trim())
+            .filter(Boolean),
+
+        image: $('#articleImage').value.trim()
+    };
+
+    if (editingId) {
+
+        Object.assign(
+            posts.find(p => p.id === editingId),
+            data
+        );
+
+    } else {
+
+        posts.unshift({
+            id: Date.now(),
+            views: 0,
+            ...data
+        });
+    }
+
+    persist();
+
+    renderOverview();
+
+    toast(
+        forcePublish
+            ? 'Article published successfully'
+            : 'Article saved successfully'
+    );
+
+    nav('posts');
+}
+
+
+// ==========================================
+// 14. WORD COUNT
+// ==========================================
+
+function updateWords() {
+
+    const count = $('#articleBody')
+        .value
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean)
+        .length;
+
+    $('#wordCount').textContent = count + ' words';
+}
+
+
+// ==========================================
+// 15. RENDER COMMENTS
+// ==========================================
+
+function renderComments() {
+
+    const list = comments.filter(c =>
+        commentFilter === 'All' || c.status === commentFilter
+    );
+
+    $('#commentsList').innerHTML = list.map(c => `
+
+        <div class="comment-item">
+
+            <div class="comment-avatar">
+                ${escapeHTML(c.initials)}
+            </div>
+
+            <div class="comment-content">
+
+                <div class="comment-head">
+
+                    <strong>
+                        ${escapeHTML(c.name)}
+                    </strong>
+
+                    <small>
+                        ${escapeHTML(c.time)}
+                    </small>
+
+                    <span class="status ${
+                        c.status === 'Approved'
+                            ? 'status-published'
+                            : 'status-draft'
+                    }">
+                        ${c.status}
+                    </span>
+
+                </div>
+
+                <p>
+                    ${escapeHTML(c.text)}
+                </p>
+
+                <div class="comment-on">
+                    On: ${escapeHTML(c.article)}
+                </div>
+
+                <div class="comment-actions">
+
+                    ${
+                        c.status !== 'Approved'
+                            ? `
+                                <button class="small-action approve" data-approve="${c.id}">
+                                    ✓ Approve
+                                </button>
+                            `
+                            : ''
+                    }
+
+                    <button class="small-action" data-delete-comment="${c.id}">
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `).join('') || `
+        <p style="padding:25px;color:var(--muted)">
+            No comments in this view.
+        </p>
+    `;
+
+    $('#commentTotal').textContent = comments.filter(
+        c => c.status === 'Pending'
+    ).length;
+
+
+    // Approve Comments
+
+    $$('[data-approve]').forEach(b => {
+
+        b.onclick = () => {
+
+            comments.find(
+                c => c.id === +b.dataset.approve
+            ).status = 'Approved';
+
+            persist();
+
+            renderComments();
+
+            renderOverview();
+
+            toast('Comment approved');
+        };
+    });
+
+
+    // Delete Comments
+
+    $$('[data-delete-comment]').forEach(b => {
+
+        b.onclick = () => {
+
+            confirmAction(
+                'Delete comment?',
+                'This comment will be removed from your local demo workspace.',
+
+                () => {
+
+                    comments = comments.filter(
+                        c => c.id !== +b.dataset.deleteComment
+                    );
+
+                    persist();
+
+                    renderComments();
+
+                    renderOverview();
+
+                    toast('Comment deleted');
+                }
+            );
+        };
+    });
+
+
+    // Comment Filters
+
+    $$('[data-comment-filter]').forEach(b => {
+
+        b.classList.toggle(
+            'active',
+            b.dataset.commentFilter === commentFilter
+        );
+    });
+}
+
+
+// ==========================================
+// 16. RENDER CATEGORIES
+// ==========================================
+
+function renderCategories() {
+
+    const cats = [
+        'Technology',
+        'Design',
+        'Productivity',
+        'Education'
+    ];
+
+    const descriptions = [
+        'Ideas, innovation and the digital world.',
+        'Visual thinking and experiences that matter.',
+        'Better systems for focused, meaningful work.',
+        'Learning resources, guides and student stories.'
+    ];
+
+    $('#categoryGrid').innerHTML = cats.map((c, i) => `
+
+        <article class="category-card">
+
+            <div class="category-symbol">
+                ${['⌘', '✧', '◷', '▱'][i]}
+            </div>
+
+            <h3>${c}</h3>
+
+            <p>${descriptions[i]}</p>
+
+            <small>
+                ${posts.filter(p => p.category === c).length} articles · View articles →
+            </small>
+
+        </article>
+
+    `).join('');
+}
+
+
+// ==========================================
+// 17. CONFIRMATION MODAL
+// ==========================================
+
+function confirmAction(title, txt, fn) {
+
+    modalAction = fn;
+
+    $('#modalTitle').textContent = title;
+
+    $('#modalText').textContent = txt;
+
+    $('#modalBackdrop').classList.add('show');
+}
+
+
+// ==========================================
+// 18. NAVIGATION EVENT LISTENERS
+// ==========================================
+
+$$('[data-view]').forEach(b => {
+
+    b.addEventListener('click', () => {
+
+        if (b.dataset.view === 'editor') {
+
+            openEditor();
+
+        } else {
+
+            nav(b.dataset.view);
+        }
+    });
+});
+
+
+$$('[data-go]').forEach(b => {
+
+    b.addEventListener('click', () => {
+
+        b.dataset.go === 'editor'
+            ? openEditor()
+            : nav(b.dataset.go);
+    });
+});
+
+
+// ==========================================
+// 19. FILTER EVENT LISTENERS
+// ==========================================
+
+$$('[data-filter]').forEach(b => {
+
+    b.addEventListener('click', () => {
+
+        currentFilter = b.dataset.filter;
+
+        renderPosts();
+    });
+});
+
+
+$$('[data-comment-filter]').forEach(b => {
+
+    b.addEventListener('click', () => {
+
+        commentFilter = b.dataset.commentFilter;
+
+        renderComments();
+    });
+});
+
+
+// ==========================================
+// 20. SEARCH EVENT LISTENERS
+// ==========================================
+
+$('#postSearch').addEventListener('input', renderPosts);
+
+$('#categoryFilter').addEventListener('change', renderPosts);
+
+$('#globalSearch').addEventListener('input', e => {
+
+    if (e.target.value.trim()) {
+
+        nav('posts');
+
+        $('#postSearch').value = e.target.value;
+
+        renderPosts();
+    }
+});
+
+
+// ==========================================
+// 21. ARTICLE BUTTONS
+// ==========================================
+
+$('#saveArticle').onclick = () => savePost(false);
+
+$('#publishArticle').onclick = () => savePost(true);
+
+$('#articleBody').addEventListener('input', updateWords);
+
+
+// ==========================================
+// 22. TEXT FORMATTING TOOLS
+// ==========================================
+
+$$('[data-format]').forEach(b => {
+
+    b.onclick = () => {
+
+        const ta = $('#articleBody');
+
+        const start = ta.selectionStart;
+
+        const end = ta.selectionEnd;
+
+        const selected =
+            ta.value.slice(start, end) || 'your text';
+
+        const f = b.dataset.format;
+
+        const wrap =
+            f === 'bold' ? ['**', '**'] :
+            f === 'italic' ? ['_', '_'] :
+            f === 'h2' ? ['## ', ''] :
+            f === 'quote' ? ['> ', ''] :
+            ['• ', ''];
+
+        const replacement =
+            wrap[0] + selected + wrap[1];
+
+        ta.setRangeText(
+            replacement,
+            start,
+            end,
+            'select'
+        );
+
+        ta.focus();
+
+        updateWords();
+    };
+});
+
+
+// ==========================================
+// 23. DARK / LIGHT THEME
+// ==========================================
+
+$('#themeToggle').onclick = () => {
+
+    document.body.classList.toggle('dark');
+
+    localStorage.setItem(
+        'inkspace_theme',
+        document.body.classList.contains('dark')
+            ? 'dark'
+            : 'light'
+    );
+};
+
+
+if (localStorage.getItem('inkspace_theme') === 'dark') {
+
+    document.body.classList.add('dark');
+}
+
+
+// ==========================================
+// 24. MOBILE MENU
+// ==========================================
+
+$('#mobileMenu').onclick = () => {
+
+    $('#sidebar').classList.toggle('open');
+};
+
+
+// ==========================================
+// 25. CATEGORY BUTTON
+// ==========================================
+
+$('#addCategory').onclick = () => {
+
+    toast('Demo categories are predefined for this workspace');
+};
+
+
+// ==========================================
+// 26. PROFILE BUTTON
+// ==========================================
+
+$('#profileButton').onclick = () => {
+
+    toast('Signed in as workspace admin (demo)');
+};
+
+
+// ==========================================
+// 27. MODAL BUTTONS
+// ==========================================
+
+$('#modalClose').onclick =
+$('#modalCancel').onclick = () => {
+
+    $('#modalBackdrop').classList.remove('show');
+};
+
+
+$('#modalConfirm').onclick = () => {
+
+    if (modalAction) {
+
+        modalAction();
+    }
+
+    $('#modalBackdrop').classList.remove('show');
+};
+
+
+// ==========================================
+// 28. CHART RANGE
+// ==========================================
+
+$('#chartRange').onchange = e => {
+
+    toast('Chart range set to ' + e.target.value + ' (sample analytics)');
+};
+
+
+// ==========================================
+// 29. INITIALIZE APPLICATION
+// ==========================================
+
+renderOverview();
+
+renderPosts();
+
+renderComments();
+
+renderCategories();
